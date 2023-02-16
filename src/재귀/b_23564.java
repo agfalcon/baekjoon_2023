@@ -9,32 +9,34 @@ public class b_23564 {
         String input = br.readLine();
         StringBuilder S = new StringBuilder();
         StringBuilder A = new StringBuilder();
-        String[] temp;
         while (true) {
-            int count[] = new int['z'-'a'+ 1];
-            int min = Integer.MAX_VALUE;
-            char index = '0';
-            for(int i=0;i<input.length();i++){
-                count[input.charAt(i)-'a']++;
-            }
-            for(int i=0;i<input.length();i++){
-                if(count[input.charAt(i)-'a']==0)
-                    continue;
-                if(min>count[input.charAt(i)-'a']){
-                    min = count[input.charAt(i)-'a'];
-                    index = input.charAt(i);
+            char index='0';
+            int split;
+            int i=2;
+            while(true){
+                split= (input.length()+1)/i-1;
+                if(split==0){
+                    index = input.charAt(0);
+                    break;
                 }
+                if(split*2+1>input.length()){
+                    continue;
+                }
+                if(input.substring(0,split).equals(input.substring(split+1, split+1+split))){
+                    index = input.charAt(split);
+                    break;
+                }
+                i++;
             }
-            temp = input.split(Character.toString(index));
-            if(temp.length==0){
+            if(split==0){
                 S.append(index);
                 A.append(input.length());
                 break;
             }
             else{
-                A.append(temp.length-1).append(" ");
+                A.append((input.length()+1)/(split+1)-1).append(" ");
                 S.append(index);
-                input = temp[0];
+                input = input.substring(0, split);
             }
         }
         StringBuilder sb = S.reverse().append("\n").append(A.reverse());

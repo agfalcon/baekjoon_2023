@@ -26,17 +26,17 @@ public class b_2447 {
             return;
         }
         for(int i=0;i<3;i++){
-            star(n/3, canvas, start, end/3);
+            star(n/3, canvas, start, start + (end-start)/3);
         }
-        star(n/3, canvas, end/3, 2*end/3);
+        star(n/3, canvas, start + (end-start)/3, start + 2*(end-start)/3);
         for(int i=start+n/3;i<start+2*n/3;i++){
             for(int j=0;j<n/3;j++){
                 canvas[i] = canvas[i] + " ";
             }
         }
-        star(n/3, canvas, end/3, 2*end/3);
+        star(n/3, canvas, start + (end-start)/3, start + 2*(end-start)/3);
         for(int i=0;i<3;i++){
-            star(n/3, canvas, 2*end/3, end);
+            star(n/3, canvas, start + 2*(end-start)/3, end);
         }
     }
 }
